@@ -12,10 +12,6 @@ app.use(cors({
     allowedHeaders: ["Content-Type"]
 }));
 
-// Verify environment variables are loaded
-console.log("EMAIL_USER:", process.env.EMAIL_USER);
-console.log("EMAIL_PASS:", process.env.EMAIL_PASS);
-
 // Nodemailer Transport
 const transporter = nodemailer.createTransport({
     host: process.env.SMTP_HOST,
