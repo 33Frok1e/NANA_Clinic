@@ -86,7 +86,7 @@ const About = () => {
               className="text-gray-600 reveal"
               style={{ transitionDelay: "200ms" }}
             >
-              Founded in 2008, our ear clinic has been at the forefront of
+              Founded in 2018, our ear clinic has been at the forefront of
               audiological care, combining cutting-edge technology with
               compassionate service. Our team of specialists is dedicated to
               improving your quality of life through better hearing.
