@@ -1,4 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
+import { IoCallOutline } from "react-icons/io5";
+import { MdOutlineEmail } from "react-icons/md";
+import { IoTimeOutline } from "react-icons/io5";
 
 const AppointmentForm = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -6,6 +9,7 @@ const AppointmentForm = () => {
     name: "",
     mobile: "",
     problem: "",
+    address: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formStatus, setFormStatus] = useState<{
@@ -51,12 +55,13 @@ const AppointmentForm = () => {
     const submissionData = {
       name: formData.name,
       mobile: formData.mobile,
-      explanation: formData.problem, // Keeping naming consistent
+      explanation: formData.problem,
+      address: formData.address, // Include address in submission data
     };
 
     try {
-      const response = await fetch(
-        "https://nana-clinic-prateek.vercel.app/send-email",
+      const backendUrl = process.env.REACT_APP_BACKEND_URL;
+      const response = await fetch(`${backendUrl}/send-email`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -71,7 +76,7 @@ const AppointmentForm = () => {
           type: "success",
           message: "Your appointment request has been submitted successfully!",
         });
-        setFormData({ name: "", mobile: "", problem: "" }); // Reset form
+        setFormData({ name: "", mobile: "", problem: "", address: "" }); // Reset form
       } else {
         setFormStatus({
           type: "error",
@@ -94,116 +99,8 @@ const AppointmentForm = () => {
       <section id="appointment" className="py-20 bg-white" ref={sectionRef}>
         <div className="section-container">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            <div className="space-y-6">
-              <span className="inline-block px-4 py-1.5 bg-clinic-muted text-clinic-primary rounded-full text-sm font-medium reveal">
-                Book an Appointment
-              </span>
-              <h2
-                className="text-3xl md:text-4xl font-bold text-clinic-accent reveal"
-                style={{ transitionDelay: "100ms" }}
-              >
-                Schedule Your <span className="text-clinic-primary">Visit</span>{" "}
-                Today
-              </h2>
-              <p
-                className="text-gray-600 reveal"
-                style={{ transitionDelay: "200ms" }}
-              >
-                Take the first step towards better hearing health by booking an
-                appointment with our specialists. Fill out the form, and we'll
-                contact you promptly to confirm your visit.
-              </p>
-
-              <div
-                className="space-y-4 reveal"
-                style={{ transitionDelay: "300ms" }}
-              >
-                <div className="flex items-start space-x-4">
-                  <div className="w-10 h-10 rounded-full bg-clinic-muted flex items-center justify-center flex-shrink-0 mt-1">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-5 w-5 text-clinic-primary"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-                      />
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 className="font-medium text-clinic-accent">Phone</h3>
-                    <p className="text-gray-600">+91 720 545 4269</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start space-x-4">
-                  <div className="w-10 h-10 rounded-full bg-clinic-muted flex items-center justify-center flex-shrink-0 mt-1">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-5 w-5 text-clinic-primary"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                      />
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 className="font-medium text-clinic-accent">Email</h3>
-                    <p className="text-gray-600">
-                      nana.healthcareclinic@gmail.com
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start space-x-4">
-                  <div className="w-10 h-10 rounded-full bg-clinic-muted flex items-center justify-center flex-shrink-0 mt-1">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-5 w-5 text-clinic-primary"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                      />
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 className="font-medium text-clinic-accent">
-                      Working Hours
-                    </h3>
-                    <p className="text-gray-600">
-                      Monday - Saturday: 9:00 AM - 8:00 PM
-                    </p>
-                    <p className="text-gray-600">Sunday: Closed</p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="reveal" style={{ transitionDelay: "400ms" }}>
-                <img
-                  src="/images/form-picture.jpg"
-                  alt="Modern reception area"
-                  className="rounded-xl shadow-lg w-full h-64 object-cover"
-                />
-              </div>
-            </div>
-
+                        
+            {/* Form */}
             <div
               className="bg-clinic-secondary rounded-xl shadow-lg p-8 reveal"
               style={{ transitionDelay: "300ms" }}
@@ -268,6 +165,25 @@ const AppointmentForm = () => {
 
                 <div>
                   <label
+                    htmlFor="address"
+                    className="block text-sm font-medium text-gray-700 mb-1"
+                  >
+                    Address *
+                  </label>
+                  <input
+                    type="text"
+                    id="address"
+                    name="address"
+                    value={formData.address}
+                    onChange={handleInputChange}
+                    required
+                    className="input-field"
+                    placeholder="Enter your address"
+                  />
+                </div>
+
+                <div>
+                  <label
                     htmlFor="problem"
                     className="block text-sm font-medium text-gray-700 mb-1"
                   >
@@ -294,26 +210,6 @@ const AppointmentForm = () => {
                 >
                   {isSubmitting ? (
                     <>
-                      <svg
-                        className="animate-spin -ml-1 mr-2 h-4 w-4 text-white"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                      >
-                        <circle
-                          className="opacity-25"
-                          cx="12"
-                          cy="12"
-                          r="10"
-                          stroke="currentColor"
-                          strokeWidth="4"
-                        ></circle>
-                        <path
-                          className="opacity-75"
-                          fill="currentColor"
-                          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                        ></path>
-                      </svg>
                       Processing...
                     </>
                   ) : (
@@ -327,6 +223,79 @@ const AppointmentForm = () => {
                 </p>
               </form>
             </div>
+            
+            {/* Clinic Details */}
+            <div className="space-y-6">
+              <span className="inline-block px-4 py-1.5 bg-clinic-muted text-clinic-primary rounded-full text-sm font-medium reveal">
+                Book an Appointment
+              </span>
+              <h2
+                className="text-3xl md:text-4xl font-bold text-clinic-accent reveal"
+                style={{ transitionDelay: "100ms" }}
+              >
+                Schedule Your <span className="text-clinic-primary">Visit</span>{" "}
+                Today
+              </h2>
+              <p
+                className="text-gray-600 reveal"
+                style={{ transitionDelay: "200ms" }}
+              >
+                Take the first step towards better hearing health by booking an
+                appointment with our specialists. Fill out the form, and we'll
+                contact you promptly to confirm your visit.
+              </p>
+
+              <div
+                className="space-y-4 reveal"
+                style={{ transitionDelay: "300ms" }}
+              >
+                <div className="flex items-start space-x-4">
+                  <div className="w-10 h-10 rounded-full bg-clinic-muted flex items-center justify-center flex-shrink-0 mt-1">
+                   <IoCallOutline className="h-5 w-5 text-clinic-primary" />
+                  </div>
+                  <div>
+                    <h3 className="font-medium text-clinic-accent">Phone</h3>
+                    <p className="text-gray-600">+91 720 545 4269</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start space-x-4">
+                  <div className="w-10 h-10 rounded-full bg-clinic-muted flex items-center justify-center flex-shrink-0 mt-1">
+                    <MdOutlineEmail className="h-5 w-5 text-clinic-primary" />
+                  </div>
+                  <div>
+                    <h3 className="font-medium text-clinic-accent">Email</h3>
+                    <p className="text-gray-600">
+                      nana.healthcareclinic@gmail.com
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start space-x-4">
+                  <div className="w-10 h-10 rounded-full bg-clinic-muted flex items-center justify-center flex-shrink-0 mt-1">
+                    <IoTimeOutline className="h-5 w-5 text-clinic-primary" />
+                  </div>
+                  <div>
+                    <h3 className="font-medium text-clinic-accent">
+                      Working Hours
+                    </h3>
+                    <p className="text-gray-600">
+                      Monday - Saturday: 9:00 AM - 8:00 PM
+                    </p>
+                    <p className="text-gray-600">Sunday: Closed</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="reveal" style={{ transitionDelay: "400ms" }}>
+                <img
+                  src="/images/form-picture.jpg"
+                  alt="Modern reception area"
+                  className="rounded-xl shadow-lg w-full h-64 object-cover"
+                />
+              </div>
+            </div>
+
           </div>
         </div>
       </section>

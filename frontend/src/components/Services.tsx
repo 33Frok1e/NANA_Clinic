@@ -1,5 +1,11 @@
 
+import { LucideSpeech } from 'lucide-react';
 import React, { useEffect, useRef } from 'react';
+import { CiFaceSmile } from 'react-icons/ci';
+import { FaRegClock } from 'react-icons/fa';
+import { FaEarListen } from 'react-icons/fa6';
+import { IoClipboardOutline } from 'react-icons/io5';
+import { RiCoupon2Line } from "react-icons/ri";
 
 interface Service {
   title: string;
@@ -35,54 +41,42 @@ const Services = () => {
       title: 'Hearing Assessments',
       description: 'Comprehensive evaluation of your hearing health with state-of-the-art equipment.',
       icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-clinic-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-        </svg>
+        <IoClipboardOutline className="h-10 w-10 text-clinic-primary" />
       ),
     },
     {
       title: 'Occupational Therapy',
       description: 'Expert care for all types of ear infections with personalized treatment plans.',
       icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-clinic-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-        </svg>
+        <FaRegClock className="h-10 w-10 text-clinic-primary" />
       ),
     },
     {
       title: 'Hearing Aid trial & Fitting',
       description: 'Customized hearing aid solutions with expert fitting and ongoing support.',
       icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-clinic-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z" />
-        </svg>
+        <RiCoupon2Line className="h-10 w-10 text-clinic-primary" />
       ),
     },
     {
       title: 'Tinnitus Treatment',
       description: 'Specialized care for ringing in the ears with proven treatment protocols.',
       icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-clinic-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-        </svg>
+        <CiFaceSmile className="h-10 w-10 text-clinic-primary" />
       ),
     },
     {
       title: 'Speech Therapy',
       description: 'Diagnosis and treatment of vertigo and other balance-related conditions.',
       icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-clinic-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-        </svg>
+        <LucideSpeech className="h-10 w-10 text-clinic-primary" />
       ),
     },
     {
       title: 'Ear Wax Removal',
       description: 'Safe and gentle ear wax removal by experienced professionals.',
       icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-clinic-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
-        </svg>
+        <FaEarListen className="h-10 w-10 text-clinic-primary" />
       ),
     },
   ];

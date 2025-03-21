@@ -7,7 +7,7 @@ const app = express();
 app.use(express.json());
 
 app.use(cors({
-    origin: "*", // Allow all origins (for testing)
+    origin: "https://nana-clinic-prateek2.vercel.app",
     methods: ["GET", "POST"],
     allowedHeaders: ["Content-Type"]
 }));
@@ -28,9 +28,9 @@ const transporter = nodemailer.createTransport({
 
 // API to send email
 app.post("/send-email", async (req, res) => {
-    const { name, mobile, explanation } = req.body; // ✅ Extract values properly
+    const { name, mobile, explanation, address } = req.body; // ✅ Extract values properly
 
-    if (!name || !mobile || !explanation) {
+    if (!name || !mobile || !explanation || !address) {
         return res.status(400).json({ error: "All fields are required" });
     }
 
@@ -38,7 +38,7 @@ app.post("/send-email", async (req, res) => {
         from: process.env.EMAIL_FROM,
         to: process.env.EMAIL_TO,
         subject: "New Appointment Request",
-        text: `Name: ${name}\nMobile: ${mobile}\nExplanation: ${explanation}`,
+        text: `Name: ${name}\nMobile: ${mobile}\nAddress: ${address}\nExplanation: ${explanation}`,
     };
 
     try {
