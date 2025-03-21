@@ -13,6 +13,10 @@
     {
       "src": "/api/(.*)",
       "dest": "https://nana-clinic-prateek.vercel.app/api/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
     }
   ]
 }
