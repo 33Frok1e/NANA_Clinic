@@ -61,7 +61,7 @@ const AppointmentForm = () => {
 
     try {
       const backendUrl = process.env.REACT_APP_BACKEND_URL;
-      const response = await fetch(`${backendUrl}/send-email`,
+      const response = await fetch('https://nana-clinic-prateek.vercel.app/send-email',
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
